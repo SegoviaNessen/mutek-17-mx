@@ -14,7 +14,11 @@ void setup() {
 }
 
 void draw() {
-  
+  background(0);
+  fill(200);
+  for (int i = 0; i<positions.length; i++){
+    ellipse(positions[i].x, positions[i].y, 15,15);
+  }
    
 }
 

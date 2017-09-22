@@ -9,16 +9,21 @@ void setup( ) {
 
   myData = new String [textLines.length][6];
 
-  for(int i = 0; i< textLines.length; i++){
+  for(int i = 1; i< textLines.length; i++){
     myData[i] = textLines[i].split(",");
+    
   }
-    println(myData[1][0]);
+    //println(myData[1][0]);
+    noLoop();
 }
 
 void draw( ) {
   background(255);
   translate(20,height/2);
-
+  for(int i = 0;i < textLines.length; i++ ){
+    
+    println(myData[i][0]);
+  }
   stroke(128);
   fill(255,128);
 

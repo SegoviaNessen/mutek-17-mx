@@ -35,13 +35,14 @@ void processData() {
   //println(overallMin + " " + overallMax);
   margin = 50;
   graphHeight = (height-margin) - margin;
-  xSpacer = (width -margin - margin)/(anger.length - 1);
+  xSpacer = (width -margin - margin)/(anger.length -1);
   
   for(int i = 0; i < anger.length; i++ ){
     float adjAnger = map(anger[i], overallMin, overallMax, 0, graphHeight);
     float yPos = height -margin -adjAnger;
     float xPos = margin + (xSpacer * i);
     positions[i] = new PVector(xPos, yPos);
+    println(anger.length+ " "+i+" "+xSpacer);
   }
 }
 

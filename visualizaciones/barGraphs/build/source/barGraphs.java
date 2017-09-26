@@ -35,13 +35,13 @@ public void draw( ) {
   fill(0);
   stroke(255);
   for(int i = 0; i < value.length; i++){
-    float multiplier = 20;
+    float multiplier = 1;
     float rectWidth = width / (value.length);
     float yPos = height -(value[i]* multiplier);
 
     rect((rectWidth*i),yPos, rectWidth, yPos);
   }
-println(value);
+
 
 }
 
@@ -49,12 +49,13 @@ public void processData( ) {
   rawData = loadStrings(filename);
   value = new float[rawData.length];
 
-  for(int i = 1; i < rawData.length; i++){
+  for(int i = 1; i < value.length; i++){
     String[] thisRow = split(rawData[i], ",");
-    value[i] = PApplet.parseFloat(thisRow[0])*10;
+    value[i] = PApplet.parseFloat(thisRow[0]);
 
   }
 
+  println(value);
 
   float ovMin = min (value);
   float ovMax = max (value);

@@ -3,13 +3,16 @@
 /////
 import de.looksgood.ani.*;
 import ddf.minim.*;
+import ddf.minim.ugens.*;
 
 //variable para animadores
 AniSequence valencia, eng, joy;
 
 //variables de audio
 Minim minim;
-AudioPlayer player;
+AudioOutput out;
+Oscil wave, mod; //señal para valencia
+
 float vol;//volumen valencia Var1 docu
 
 ////variables para contador de tiempo
@@ -38,20 +41,27 @@ void setup(){
   joy1();
   
   minim = new Minim(this);
-  player = minim.loadFile("valencia_01.mp3");
+  out = minim.getLineOut();
+  wave = new Oscil(120,0.5f, Waves.SINE);
+  mod = new Oscil(129,0.5f, Waves.SINE);
+  
+  wave.patch(out);
+  mod.patch(out);
+  
 }
 
 void draw() {
   background(0);
 
 
-  vol = map(radV, 0, HALF_PI, -30,0);
-  player.setGain(vol);
+  vol = map(radV, 0, HALF_PI, 0,1);
+  wave.setAmplitude(vol);
+  mod.setAmplitude(vol);
   //speed = rad++;
 
   //println(animation.getRepeatCount() );
 
-  fill(255);
+  fill(0,255,0);
   pushMatrix();
   translate(width/2, height/2);
   rotate(PI+ HALF_PI);
@@ -63,6 +73,13 @@ void draw() {
   translate(width/2, height/2);
   rotate(PI+ HALF_PI);
   arc(0, 0, 150, 150, 0, radE, PIE);
+  popMatrix();
+  
+  fill(0,0,255,125);
+  pushMatrix();
+  translate(width/2, height/2);
+  rotate(PI+ HALF_PI);
+  arc(0, 0, 150, 150, 0, radJ, PIE);
   popMatrix();
   
   // cheaca la diferencia entre el tiempo actual y el almacenado
@@ -77,7 +94,10 @@ void draw() {
   }
   if(contador0 == 19){
     valencia.start();
-    toca();
+    
+  }
+  if(contador0 == 20){
+    joy.start();
   }
 }
 
@@ -138,23 +158,28 @@ void eng1(){
   
 }
 
+// Joy Var1 docu
+void joy1(){
+  joy.beginSequence();
+  joy.add(Ani.to(this,1,"radJ",TWO_PI));
+  joy.add(Ani.to(this,2,"radJ",0.0));
+  joy.add(Ani.to(this,31,"radJ",0.0));
+  joy.add(Ani.to(this,2,"radJ",HALF_PI+PI));
+  joy.add(Ani.to(this,2,"radJ",HALF_PI+PI));
+  joy.add(Ani.to(this,2,"radJ",0.0));
+  joy.add(Ani.to(this,63,"radJ",0.0));
+  joy.add(Ani.to(this,2,"radJ",QUARTER_PI+PI));
+  joy.add(Ani.to(this,2,"radJ",0.0));
+  joy.add(Ani.to(this,11,"radJ",0.0));
+  joy.add(Ani.to(this,1,"radJ",HALF_PI));
+  joy.add(Ani.to(this,2,"radJ",0.0));
+  joy.add(Ani.to(this,2,"radJ",HALF_PI));
+  joy.add(Ani.to(this,2,"radJ",HALF_PI));
+  joy.add(Ani.to(this,2,"radJ",0.0));
+  
+  joy.endSequence();
+  
+}
+
 
 ///////AUDIO
-void toca(){
-  //
-  if ( player.isPlaying() )
-  {
-    player.pause();
-  }
-  
-  else if ( player.position() == player.length() )
-  {
-    player.rewind();
-    player.play();
-  }
-  else
-  {
-    //player.play();
-    player.loop();
-  }
-  }

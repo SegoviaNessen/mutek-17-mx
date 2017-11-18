@@ -43,7 +43,7 @@ void loop() {
       byte dato = Serial.read();
       if (dato == 65)
       {
-        estado0 = !estado0;
+        estado0 = HIGH;
       }
       digitalWrite(led0,estado0);
       digitalWrite(rele,estado0);
@@ -51,15 +51,16 @@ void loop() {
 
      if (dato == 66)
       {
-        estado1 = !estado1;
+        estado0 = LOW;
       }
-      digitalWrite(led1,estado1);
+      digitalWrite(led0,estado0);
+      digitalWrite(rele,estado0);
 
       if (dato == 67)
       {
-        estado2 = !estado2;
+        estado1 = HIGH;
       }
-      digitalWrite(led2,estado2);
+      digitalWrite(led1,estado1);
       
       if (dato == 68)
       {

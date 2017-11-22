@@ -42,14 +42,14 @@ float radJ = 0.0; //joy pos
 PFont f;
 
 void setup(){
-  //size(2048,1080);//2Kç
-  size(1280,1024);
-  //size(720,480);
+  //size(2048,1080);//2K
+  //size(1280,1024);
+  size(720,480);
   background(0);
   frameRate(15);
   smooth();
    //printArray(PFont.list());
-  f = createFont("SourceCodePro-Regular.ttf", 24);
+  f = createFont("SourceCodePro-Regular.ttf", 12);
   textFont(f);
   //textAlign(CENTER,CENTER);
   println(Serial.list());
@@ -148,25 +148,25 @@ void draw() {
   }
   
   pushMatrix();
-  translate(200,200);
+  translate(10,10);
   fill(248,252,5);
-  rect(0,0,100,50);
+  rect(0,0,50,25);
   fill(255);
-  text("joy",150,25);
+  text("joy",75,15);
   String joyVal = str(radV);
-  text( joyVal,0,125);
+  text( joyVal,0,70);
   fill(255,0,0);
-  rect(350,0,100,50);
+  rect(250,0,50,25);
   fill(255);
-  text("engagement",500,25);
+  text("engagement",325,15);
   String engVal = str(radE);
-  text( engVal,350,125);
+  text( engVal,250,70);
   fill(0,0,255);
-  rect(700,0,100,50);
+  rect(500,0,50,25);
   fill(255);
-  text("valence",850,25);
+  text("valence",575,15);
   String valVal = str(radJ);
-  text( valVal,700,125);
+  text( valVal,500,70);
   popMatrix();
 
   
@@ -220,16 +220,19 @@ void draw() {
   
    //menciona la prueba
    pushMatrix();
-   translate((width/2)-75, height-200);
+   translate((width/2)-75, height-90);
    fill(255);
   if(contador0 <= 150 ){
-  text("variable 1",0,0);  
+  text("variable 1",50,0);
+  text("los que no conoce sobre mutek",-10,40);
   }
   if(contador0 >= 151 && contador0 <= 228){
-  text("variable 2",0,0);
+  text("variable 2",50,0);
+  text("conoce mutek, no ha asistido",-10,40);
   }
   if(contador0 >= 229 && contador0 <= 290){
-  text("variable 3",0,0);
+  text("variable 3",50,0);
+  text("conoce mutek y  ha asistido",-10,40);
   }
     popMatrix();
   

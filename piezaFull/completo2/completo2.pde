@@ -53,7 +53,7 @@ void setup(){
   textFont(f);
   //textAlign(CENTER,CENTER);
   println(Serial.list());
-  port = new Serial(this, Serial.list()[2],9600);
+  port = new Serial(this, Serial.list()[1],9600);
 
   
   time = millis(); // almacena el tiempo que corre desde que se lanza el software
